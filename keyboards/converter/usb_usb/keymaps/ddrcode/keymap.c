@@ -17,6 +17,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 
+enum custom_keycodes {
+    CKC_JP = SAFE_RANGE,
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+	case CKC_JP:
+            if (record->event.pressed) SEND_STRING("ls -al\n");
+	    break;
+    }
+    return true;
+}
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* 0: plain Qwerty without layer switching
      *         ,---------------. ,---------------. ,---------------.
@@ -45,6 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LSFT, KC_NUBS, KC_Z,    KC_X,    KC_C,    KC_V,   KC_B,   KC_N,   KC_M,    KC_COMM, KC_DOT,  KC_SLSH,          KC_RO,   KC_RSFT,              KC_UP,               KC_P1,   KC_P2,   KC_P3,   KC_PEQL,    KC_EXEC, KC_PSTE,
     KC_LCTL, KC_LGUI, KC_LALT, KC_MHEN, KC_HANJ,         LT(2,KC_SPC),   KC_HAEN, KC_HENK, KC_KANA, KC_RALT, KC_RGUI, KC_APP,  KC_RCTL,     KC_LEFT, KC_DOWN, KC_RGHT,    KC_P0,            KC_PDOT, KC_PENT,    KC_FIND, KC_CUT
     ),
+
     [1] = LAYOUT_all(
                       KC_F13,  KC_F14,  KC_F15,  KC_F16, KC_F17, KC_F18, KC_F19,  KC_F20,  KC_F21,  KC_F22,    KC_F23,  KC_F24,
     KC_ESC,           KC_F1,   DF(0),   KC_F3,   KC_F4,  KC_F5,  KC_F6,  KC_F7,   KC_F8,   KC_F9,   KC_F10,    KC_F11,  KC_F12,               KC_PSCR, KC_SLCK, KC_PAUS,    KC_VOLD, KC_VOLU, KC_MUTE, KC_PWR,     KC_HELP,
@@ -56,12 +70,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [2] = LAYOUT_all(
                       ______,  ______,   ______,    ______,  ______,   ______,  ______, ______,  ______, ______, ______, ______,
-    ______,           ______,  ______,   ______,    ______,  ______,   ______,  ______, ______,  ______, ______, ______, ______,             ______,______,______,    ______,______,______,______,    ______,
+    ______,           ______,  ______,   CKC_JP,    ______,  ______,   ______,  ______, ______,  ______, ______, ______, ______,             ______,______,______,    ______,______,______,______,    ______,
     ______,  ______,  ______,  ______,   ______,    ______,  ______,   ______,  ______, ______,  ______, ______, ______, ______, ______,     ______,______,______,    ______,______,______,______,    ______,______,
-    ______,  S(KC_3), S(KC_7),S(KC_LBRC),S(KC_RBRC),S(KC_2), KC_PEQL,  ______,  KC_UP , ______,  KC_PAST, ______, ______,         ______,     ______,______,______,    ______,______,______,______,    ______,______,
-    KC_DEL,  S(KC_4), S(KC_1),S(KC_9),   S(KC_0), S(KC_MINS),KC_PPLS,  KC_LEFT,KC_DOWN,KC_RIGHT, KC_PMNS, KC_GRV,         ______, ______,                              ______,______,______,______,    ______,______,
-    ______,  ______,  S(KC_6),S(KC_BSLS),KC_LBRC,   KC_RBRC, S(KC_GRV),S(KC_5),  ______, ______,  ______, KC_BSLS,         ______, ______,            ______,           ______,______,______,______,    ______,______,
-    ______,  ______,  ______,  ______,   ______,             ______,           ______, ______,  ______, ______, ______, ______, ______,     ______,______,______,    ______,       ______,______,    ______,______
+    ______,  S(KC_3), S(KC_7),S(KC_LBRC),S(KC_RBRC),S(KC_2), KC_PEQL,  ______,  KC_UP , ______,  KC_PAST, ______, ______,        ______,     ______,______,______,    ______,______,______,______,    ______,______,
+    KC_DEL,  S(KC_4), S(KC_1),S(KC_9),   S(KC_0), S(KC_MINS),KC_PPLS,  KC_LEFT,KC_DOWN,KC_RIGHT, KC_PMNS, KC_GRV,        ______, ______,                              ______,______,______,______,    ______,______,
+    ______,  ______,  S(KC_6),S(KC_BSLS),KC_LBRC,   KC_RBRC, S(KC_GRV),S(KC_5),  ______, ______,  ______, KC_BSLS,       ______, ______,            ______,           ______,______,______,______,    ______,______,
+    ______,  ______,  ______,  ______,   ______,             ______,           ______, ______,  ______, ______,  ______, ______, ______,     ______,______,______,    ______,       ______,______,    ______,______
     ),
 };
 
