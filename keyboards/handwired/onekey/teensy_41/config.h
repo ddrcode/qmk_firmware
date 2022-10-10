@@ -20,15 +20,11 @@
 //#include "config_common.h"
 
 
-#define ILI9341_BLACK 0x0000       /*   0,   0,   0 */
-#define ILI9341_BLUE 0x001F        /*   0,   0, 255 */
-#define ILI9341_GREEN 0x07E0       /*   0, 255,   0 */
-#define ILI9341_RED 0xF800         /* 255,   0,   0 */
-#define ILI9341_YELLOW 0xFFE0      /* 255, 255,   0 */
-#define ILI9341_WHITE 0xFFFF       /* 255, 255, 255 */
-
-
-
+#define QUANTUM_PAINTER_SUPPORTS_256_PALETTE TRUE
+#define SPI_DRIVER SPID1
+#define SPI_SCK_PIN TEENSY_PIN13
+#define SPI_MOSI_PIN TEENSY_PIN11
+#define SPI_MISO_PIN TEENSY_PIN12
 
 
 #define MATRIX_ROWS 1

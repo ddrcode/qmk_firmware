@@ -19,4 +19,7 @@
 
 #define MIMXRT1062_MCUCONF
 
+// #undef STM32_SPI_USE_SPI1
+// #define STM32_SPI_USE_SPI1 TRUE
+
 #endif /* _MCUCONF_H_ */

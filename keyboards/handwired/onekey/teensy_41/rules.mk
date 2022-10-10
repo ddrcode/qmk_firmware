@@ -22,4 +22,5 @@ DEFAULT_FOLDER = handwired/onekey/teensy_41
 # SRC += screen.cpp
 # SRC += host_t36.cpp
 
-
+QUANTUM_PAINTER_ENABLE = yes
+QUANTUM_PAINTER_DRIVERS = ili9341_spi
