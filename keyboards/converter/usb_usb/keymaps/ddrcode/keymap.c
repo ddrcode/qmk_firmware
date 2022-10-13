@@ -15,6 +15,17 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifndef NO_DEBUG
+#define NO_DEBUG
+#endif
+
+#if !defined(NO_PRINT) && !defined(CONSOLE_ENABLE)
+#define NO_PRINT
+#endif
+/*
+#define NO_ACTION_MACRO
+#define NO_ACTION_FUNCTION
+*/
 #include QMK_KEYBOARD_H
 
 enum custom_keycodes {
@@ -77,5 +88,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ______,  ______,  S(KC_6),S(KC_BSLS),KC_LBRC,   KC_RBRC, S(KC_GRV),S(KC_5),  ______, ______,  ______, KC_BSLS,       ______, ______,            ______,           ______,______,______,______,    ______,______,
     ______,  ______,  ______,  ______,   ______,             ______,           ______, ______,  ______, ______,  ______, ______, ______,     ______,______,______,    ______,       ______,______,    ______,______
     ),
+};
+
+const key_override_t ctrl_s_colemak_override = ko_make_with_layers(MOD_MASK_CTRL, KC_R, C(KC_S), 2);
+const key_override_t cmd_s_colemak_override = ko_make_with_layers(MOD_MASK_GUI, KC_R, G(KC_S), 2);
+const key_override_t ctrl_f_colemak_override = ko_make_with_layers(MOD_MASK_CTRL, KC_T, C(KC_F), 2);
+const key_override_t cmd_f_colemak_override = ko_make_with_layers(MOD_MASK_GUI, KC_T, G(KC_F), 2);
+
+const key_override_t **key_overrides = (const key_override_t *[]){
+	&ctrl_s_colemak_override,
+	&cmd_s_colemak_override,
+	&ctrl_f_colemak_override,
+	&cmd_f_colemak_override,
+	NULL // Null terminate the array of overrides!
 };
 

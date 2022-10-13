@@ -4,4 +4,14 @@ KEY_LOCK_ENABLE = no
 AUTO_SHIFT_ENABLE = no
 CAPS_WORD_ENABLE = no
 SEND_STRING_ENABLE = yes
+KEY_OVERRIDE_ENABLE = yes
+MOUSEKEY_ENABLE = no
+POINTING_DEVICE_ENABLE = no
+CONSOLE_ENABLE = no
+BOOTMAGIC_ENABLE = no
+EXTRAKEY_ENABLE = no
+
+# Requires NO_ACTION_MACRO and NO_ACTION_FUNCTION in config.h
+# see https://thomasbaart.nl/2018/12/01/reducing-firmware-size-in-qmk/
+# EXTRAFLAGS += -flto
 
